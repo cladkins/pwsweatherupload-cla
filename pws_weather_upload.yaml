@@ -338,7 +338,7 @@ variables:
     {% for i in [
           ['ID', station_id],
           ['PASSWORD', station_key],
-          ['dateutc', (utcnow().strftime('%Y-%m-%d %H:%M:%S') | replace(' ', '+'))],
+          ['dateutc', utcnow().strftime('%Y-%m-%d %H:%M:%S')],
           ['tempf', tempf],
           ['humidity', humidity],
           ['winddir', winddir],
@@ -357,7 +357,12 @@ variables:
           ['action', 'updateraw']
         ] %}
       {% if i[1] != 'none' and i[1] != '' %}
-        {% set data.sensors = data.sensors + ['{}={}'.format(i[0] | urlencode, i[1] | urlencode)] %}
+        {% if i[0] == 'dateutc' %}
+          {% set val = i[1] | replace(' ', '%20') %}
+          {% set data.sensors = data.sensors + ['{}={}'.format(i[0] | urlencode, val)] %}
+        {% else %}
+          {% set data.sensors = data.sensors + ['{}={}'.format(i[0] | urlencode, i[1] | urlencode)] %}
+        {% endif %}
       {% endif %}
     {% endfor %}
     {{ data.sensors | join('&') }}
