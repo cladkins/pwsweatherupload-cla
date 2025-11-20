@@ -389,7 +389,7 @@ action:
       - service: !input rest_command_service
         response_variable: resp
         data:
-          url: "https://pwsupdate.pwsweather.com/api/v1/submitwx?{{ payload }}"
+          url: "https://weatherstation.wunderground.com/weatherstation/updateweatherstation.php?{{ payload }}"
       - if: "{{ enable_logging }}"
         then:
           - service: system_log.write
