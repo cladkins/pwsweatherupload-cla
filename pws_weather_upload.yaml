@@ -71,28 +71,24 @@ blueprint:
       selector:
         entity:
           domain: sensor
-          device_class: precipitation
       default: ''
     dailyrainin_entity:
       name: Daily Rainfall (in millimeters or inches)
       selector:
         entity:
           domain: sensor
-          device_class: precipitation
       default: ''
     monthrainin_entity:
       name: Monthly Rainfall (in millimeters or inches)
       selector:
         entity:
           domain: sensor
-          device_class: precipitation
       default: ''
     yearrainin_entity:
       name: Yearly Rainfall (in millimeters or inches)
       selector:
         entity:
           domain: sensor
-          device_class: precipitation
       default: ''
     weather_condition:
       name: Weather Condition (e.g. -RA, +SN, SKC)
